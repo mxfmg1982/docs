@@ -96,13 +96,13 @@ To manually configure the account, you have to enter **protocol**, **server host
 
 You can set up the following additional account settings:
 
-* **Subscribe to incoming emails** – user can select this option to get notified about the new incoming emails for modeling use `SubscribeToIncomingEmail` Java action. Read more about this in the section below.
+* **Subscribe to incoming emails** – Select this option to get notified about the new incoming emails for modeling use `SubscribeToIncomingEmail` Java action. Read more about this in the section below.
 
 {{% alert color="warning" %}}
 This is only supported for IMAP protocols, and some servers may not support it at all.
 {{% /alert %}}
 
-* **Sanitize email to prevent XSS attacks** – option to enable the removal of malicious scripts to prevent XSS attacks. This option is unselected by default. 
+* **Sanitize email to prevent XSS attacks** – Select this option to enable the removal of malicious scripts to prevent XSS attacks. This option is unselected by default. 
 
 {{% alert color="warning" %}}
 We strongly recommend turning this the **Sanitize email to prevent XSS attacks** setting on. To learn more about this option, see [Sanitize untrusted HTML (to prevent XSS)](https://jsoup.org/cookbook/cleaning-html/safelist-sanitizer).
@@ -217,9 +217,9 @@ When duplicating this microflow, do not change the input parameter name and data
 
     {{% alert color="warning" %}}When duplicating this microflow, do not change input parameter name and data type.{{% /alert %}}
     
-#### 4.5.1 Enabling Subscription in Email Settings
+#### 4.5.1 Enabling Subscription in Account Settings
 
-For some use cases, like triggering actions when a new email is received, you need to enable the subscriptions to new emails using in the Email Settings as well as in the subscription microflow documented in [Subscribing to Incoming Email](#subscribe-incoming-email).
+When subscribing to incoming email, enable **Subscribe to incoming emails* in the [Additional Account Settings](#other-account-settings) as well as in the subscription microflow documented in [Subscribing to Incoming Email](#subscribe-incoming-email).
 
 #### 4.5.2 Additional Considerations 
 
