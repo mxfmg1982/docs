@@ -4,7 +4,7 @@ title = "Mendix Documentation"
 enableRobotsTXT = true
 
 # Hugo allows theme composition (and inheritance). The precedence is from left to right.
-theme = ["docsy"]
+#theme = ["docsy"]
 
 # NK - Changes default ERROR message when unable to resolve ref/relref links to WARNING
 # Are we going to use this?
@@ -194,3 +194,18 @@ disableKinds = ["taxonomy","taxonomyTerm","term"]
         	url = "https://example.org/mail"
         	icon = "fa fa-envelope"
             desc = "Discuss development issues around the project"
+
+# Hugo modules setup
+[module]
+  proxy = "direct"
+  # uncomment line below for temporary local development of module
+  # replacements = "github.com/google/docsy -> ../../docsy"
+  [module.hugoVersion]
+    extended = true
+    min = "0.75.0"
+  [[module.imports]]
+    path = "github.com/google/docsy"
+    disable = false
+  [[module.imports]]
+    path = "github.com/google/docsy/dependencies"
+    disable = false
