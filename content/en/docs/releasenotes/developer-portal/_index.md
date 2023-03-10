@@ -17,6 +17,12 @@ To see the current status of the Mendix Developer Portal and Control Center, see
 
 ## 2023
 
+### March 13th, 2023
+
+#### Fixes
+
+* We have fixed an issue that limited the ability of company administrators to manage app roles.
+
 ### March 9th, 2023
 
 #### Improvements
