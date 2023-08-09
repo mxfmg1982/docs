@@ -10,7 +10,7 @@ tags: ["marketplace", "marketplace component", "OIDC", "IdP", "identity provider
 
 ## 1 Introduction
 
-The [OpenID Connect (OIDC) SSO module](https://marketplace.mendix.com/link/component/120371) allows end-users of your Mendix app to login via Single Sign-on (SSO) using the OIDC protocol.  Besides delegating end-user authentication (OIDC), your app can also delegate authorization (OAuth).
+The [OpenID Connect (OIDC) SSO](https://marketplace.mendix.com/link/component/120371) module allows end-users of your Mendix app to login via Single Sign-on (SSO) using the OIDC protocol.  Besides delegating end-user authentication (OIDC), your app can also delegate authorization (OAuth).
 
 OIDC is an extension of OAuth2 that propagates the end-user's identity to your application.
 
@@ -78,7 +78,7 @@ The OIDC SSO module does not yet support
 
 ## 2 Dependencies
 
-The OIDC module requires your app to be using Mendix 8.18+ or later. (Mendix 9 compatible).
+The OIDC module requires your app to be using Mendix 8.18 or above.
 
 It requires the following Marketplace modules to be included in your app:
 
@@ -124,20 +124,20 @@ To migrate from Mendix 8.18.x to Mendix 9.8.1 or above, follow the steps below:
 
 1. Open your app in the latest patch version of Mendix 8.18 and allow it to be upgraded.
 2. Save the upgraded version of the app.
-3. Review the guidance in [Moving from Mendix Studio Pro 8 to 9](/refguide/moving-from-8-to-9/).
+3. Review the guidance in [Moving from Mendix Studio Pro 8 to 9](/refguide9/moving-from-8-to-9/).
 4. Open your app in Mendix 9.8.1 or above and allow it to be upgraded.
 5. Import the “OIDC SSO” Platform Edition module from the Marketplace.
 6. Import the “Mx Model Reflection” module from Marketplace.
 7. In the dialog **Security** > **User roles**, select *Administrator* and click **Edit**.
 8. Enable `MxModelReflection.ModelAdministrator` and close the dialog boxes with the **OK** button.
 9. You can see some errors in the Errors tab. To resolve these errors, import the “Atlas Core” module from the Marketplace.
-10. If you still have errors, review the information in [Migrate From Atlas 2 To Atlas 3](/refguide/moving-from-atlas-2-to-3/) and use it to resolve the issues.
+10. If you still have errors, review the information in [Migrate From Atlas 2 To Atlas 3](/refguide9/moving-from-atlas-2-to-3/) and use it to resolve the issues.
 11. Delete the “Atlas_UI_Resources” module from your app. Your app is now using themes from the Atlas Core Module.
 12. Update the “Administration”, “MendixSSO”, and “Native Mobile Resources” modules to the latest version by importing them from the Marketplace.
 
 #### 3.2.2 Replacing Community Edition with Platform Edition on Mendix Version 9
 
-If your app is already developed using Mendix version 9, but uses the community edition of the OIDC SSO module, you can just do the following.
+If your app is already developed using Mendix version 9 or above, but uses the community edition of the OIDC SSO module, you can just do the following.
 
 1. Import the "OIDC" platform edition module from the Marketplace.
 2. Import the "Mx Model Reflection" Module from the Marketplace.
@@ -148,7 +148,7 @@ This section shows you how to configure your app to use OIDC for SSO.
 
 ### 4.1 Configuring Roles
 
-Ensure that you have allocated the following user roles to the OIDC module roles
+Ensure that you have allocated the following user roles to the OIDC module roles:
 
 | User Role | OIDC Module Role |
 | --- | --- |
@@ -164,6 +164,8 @@ You may have to add the *Anonymous* user role if it does not exist already.
 
 ### 4.2 Allowing Anonymous Users
 
+The OIDC module supports multiple OIDC/OAuth-compatible IdPs. To allow your end-users to choose from a number of different IdPs, or to have the option to log back into the app after they have logged out, you will need to give them access to the app before they have signed in to the app. Therefore, you need to give anonymous users access to your app.
+
 In the **Anonymous** tab of the app security settings, do the following:
 
 1. Set **Allow anonymous users** to **Yes**
@@ -174,6 +176,8 @@ In the **Anonymous** tab of the app security settings, do the following:
 ### 4.3 Configuring Navigation
 
 The OIDC SSO module works without a specified sign-in page. Therefore, in the navigation section of your app, set **Sign-in page** (in the **Authentication** section) to *(none)*.
+
+To allow your end-users to choose from a number of different IdPs, or to have the option to log back into the app after they have logged out, set a **Role-based home page** for role **Anonymous** to **OIDC.Login_Web_Button**. See [Role-Based Home Pages](/refguide/navigation/#role-based) in *Navigation* for more information.
 
 In addition, administrators will need to have access to configure OIDC and also manage end-users. You can do this by including the pages `Administration.Account_Overview` and `OIDC.OIDC_Client_Overview` into the app navigation, or a separate administration page.
 

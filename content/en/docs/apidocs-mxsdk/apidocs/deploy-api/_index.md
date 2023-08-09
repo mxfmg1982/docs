@@ -2,8 +2,8 @@
 title: "Deploy API"
 url: /apidocs-mxsdk/apidocs/deploy-api/
 category: "API Documentation"
-description: "APIs which can be used to deploy Mendix apps to licensed nodes"
-weight: 25
+description: "This API can be used to deploy Mendix apps to licensed nodes, manage application environments in the Mendix Cloud, retrieve statuses, start and stop applications, and deploy or transport new model versions to application environments."
+weight: 30
 tags: ["API", "deploy", "licensed", "deployment", "cloud"]
 #If moving or renaming this doc file, implement a temporary redirect and let the respective team know they should update the URL in the product. See Mapping to Products for more details.
 ---
@@ -15,6 +15,8 @@ The Deploy API only works for apps which are deployed to the Mendix Cloud.
 ## 1 Introduction
 
 The Deploy API allows you to manage application environments in the Mendix Cloud. You can retrieve the status of, and start and stop, applications. You can also configure new model versions and deploy them to application environments. To create and manage deployment packages you also need the [Build API](/apidocs-mxsdk/apidocs/build-api/). For backup-related actions refer to [Backups API](/apidocs-mxsdk/apidocs/backups-api/).
+
+You can use webhooks to trigger CI/CD pipelines which use this API. These are described in [Webhooks](/developerportal/deploy/webhooks/).
 
 This image provides a domain model representation of the concepts discussed below and how these are related:
 
@@ -485,7 +487,7 @@ Retrieves the deployed package of a specific environment that is connected to a 
 
 ```bash
 HTTP Method: GET
-URL: https://deploy.mendix.com/api/1/apps/<AppId>/environments/<Mode>/package
+URL: https://deploy.mendix.com/api/1/apps/<AppId>/environments/<Mode>/package?url=<Boolean>
 ```
 
 #### 3.9.2 Request
@@ -494,11 +496,12 @@ URL: https://deploy.mendix.com/api/1/apps/<AppId>/environments/<Mode>/package
 
 * *AppId* (String): Sub-domain name of an app.
 * *Mode* (String): The mode of the environment of the app. An environment with this mode should exist.
+* *url* (Boolean) *(default: false)*: Indicates whether the API should return a URL pointing to the location of the package.
 
 **Example Request**
 
 ```bash
-GET /api/1/apps/calc/environments/Acceptance/package
+GET /api/1/apps/calc/environments/Acceptance/package?url=true
 Host: deploy.mendix.com
 
 Content-Type: application/json
@@ -520,6 +523,10 @@ An object with the following key-value pairs:
 * *Status* (String): Status of the package. A package is ready to use if the status is 'Succeeded'.
     Possible values: Succeeded, Queued, Building, Uploading and Failed.
 * *Size* (Long): Size of the package in bytes.
+* *Url* (object): A json object containing the following:
+
+    * *Location*: The URL pointing to the package file.
+    * *TTL*: How long the URL is valid (in seconds).
 
 **Error Codes**
 
@@ -533,15 +540,19 @@ An object with the following key-value pairs:
 
 ```json
 {
-     "Status" :  "Succeeded",
-     "CreationDate" :  1404990271835,
-     "ExpiryDate": null,
-     "Description" :  "Add scientific mode" ,
-     "Version" :  "2.5.4.63" ,
-     "Size" :  3.0571174621582031,
-     "PackageId" :  "b3d14e53-2654-4534-b374-9179a69ef3cf" ,
-     "Creator" :  "Richard Ford" ,
-     "Name" :  "Main line-2.5.4.63.mda"
+    "Status" :  "Succeeded",
+    "CreationDate" :  1404990271835,
+    "ExpiryDate": null,
+    "Description" :  "Add scientific mode" ,
+    "Version" :  "2.5.4.63" ,
+    "Size" :  15342295,
+    "PackageId" :  "b3d14e53-2654-4534-b374-9179a69ef3cf" ,
+    "Creator" :  "Richard Ford" ,
+    "Name" :  "Main line-2.5.4.63.mda",
+    "Url": {
+        "Location": "https://url/to/download/the/package/file",
+        "TTL": 900
+    }
 }
 ```
 

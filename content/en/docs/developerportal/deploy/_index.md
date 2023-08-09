@@ -32,17 +32,9 @@ This section of the *Developer Portal Guide* contains step-by-step instructions,
 
 ## 2 Run Locally or Preview
 
-### 2.1 Studio Pro {#run-in-studio-pro}
-
-In *Studio Pro*, you can click the play button (▶) in the toolbar to run your app locally. Use the **View** button to directly jump to see your app running in your browser at *localhost*.
+In Studio Pro, you can click the play button (▶) in the toolbar to run your app locally. Use the **View** button to directly jump to see your app running in your browser at *localhost*.
 
 To speed up the development process, most changes you make within Studio Pro will use "Instant Update" to be reflected immediately in the locally-running app. However, some changes (such as changes to the domain model) will need the whole app to be restarted.
-
-### 2.2 Studio
-
-In *Studio*, you can click **Preview** in the upper-right corner of Studio to see a preview of your app in the browser. 
-
-For more information see [Previewing and Publishing Your App](/studio/publishing-app/).
 
 ## 3 Mendix Cloud
 
@@ -54,7 +46,7 @@ For more information, see [Mendix Cloud](/developerportal/deploy/mendix-cloud-de
 
 ### 3.1 Mendix Cloud Dedicated {#mendix-cloud-dedicated}
 
-Organizations can also have their own Mendix Cloud, named [Mendix Cloud Dedicated](https://www.mendix.com/evaluation-guide/app-lifecycle/mendix-cloud-overview/#mendix-cloud-vpc). This works in exactly the same way as the Mendix Cloud, but runs on your own virtual private cloud and will only host your company's apps.
+Organizations can also have their own Mendix Cloud, named [Mendix Cloud Dedicated](https://www.mendix.com/evaluation-guide/app-lifecycle/mendix-cloud-overview/#mendix-cloud-vpc). This works in exactly the same way as the Mendix Cloud except that the cluster on which the apps run is not shared with any other customers. Only your own organization's apps run on this cluster. Furthermore, you can also have direct access to your other system over your network.
 
 ## 4 SAP Business Technology Platform (SAP BTP)
 

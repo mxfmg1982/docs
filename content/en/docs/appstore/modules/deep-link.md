@@ -20,8 +20,11 @@ If you need to access pages or set up a published REST service, the Deep Link mo
 | Solution  | Description | Advantage                                                 | Disadvantage                                                 |
 | ---------------- | ---- | --------------------------------------------------------- | ------------------------------------------------------------ |
 | URL property of a page | You can access a page by specifying the [URL property of the page](/refguide/page-properties/#url). This is an out-of-the-box feature of Mendix Studio Pro. | Mapping is clearly configured in the application model. | <ul><li>The object ID of the data is owned by Mendix runtime, so when the object ID changes for whatever reason, the link will be broken</li><li>You can only use this solution to access pages</li></ul> |
-| Published Deeplink API REST service | The published REST service basically has the same concept as the Deep Link module, that is, a request handler is mapped to microflow actions. <br/>For an example for how to set up a published REST service, see the [REST DeepLink module](https://marketplace.mendix.com/link/component/116642). | <ul><li>The mapping is clearly configured in the application model</li><li>Concepts on which the implementation is based such as session handling and security are available in the Mendix Studio Pro and runtime</li></ul> |The redirect logic is executed before the Mendix Client is loaded. Therefore, after processing the request, you need to forward it to a page that contains a persistent object.|
 | Deep Link module | The Deep Link module processes the request and creates a reference object which is being stored with the user session. After this, the user is forwarded to a location which takes care of loading the Mendix Client. This is by default the `index.html` page. When the Mendix Client is loaded, the **Home** microflow (configured in the model) is executed and the microflow which is configured to handle the deep link request is being executed. | It is possible to set up non-persistent actions which can be passed as a parameter to a page. |The model consistency check is not sufficient in certain scenarios. When a microflow which is configured with a deep link at runtime and afterwards deleted at design time, Mendix consistency checking mechanism cannot catch it.|
+
+{{% alert color="info" %}}
+There can be other approaches which are implemented by community-supported Marketplace modules, but these are not listed in this table.
+{{% /alert %}}
 
 ### 1.1 Typical Use Cases
 
@@ -38,13 +41,13 @@ The typical usage scenario is configuring a link to trigger a microflow, for exa
 * Provide a colleague with a link to a certain object instead of describing the necessary navigation steps
 * Generate confirmation links that can be emailed to users
 
-## 2. Installation
+## 2 Installation
 
 Follow the instructions in [How to Use Marketplace Content in Studio Pro](/appstore/general/app-store-content/) to import the Deep Link module into your app.
 
-{{% alert color="info" %}}After you install the Deep Link module and set up deep links, these links will not break if you upgrade from Mendix Studio Pro 8 to 9.{{% /alert %}}
+{{% alert color="info" %}}After you install the Deep Link module and set up deep links, these links will not break if you upgrade from Mendix Studio Pro 9 to 10.{{% /alert %}}
 
-## 3. Configuration
+## 3 Configuration
 
 After importing the Deep Link module into your app, you need to configure it.
 
@@ -68,7 +71,7 @@ Make sure that all roles—including your guest roles—which need to access you
 
 Make sure that the roles that need to change the configuration of the Deep Link module at runtime have the **DeepLink.Admin** user role (via **App** > **Security** > **User roles**).
 
-### 3.4 Adding the Configuration Overview Snippet the Custom Admin Page
+### 3.4 Adding the Configuration Overview Snippet to the Custom Admin Page
 
 To configure and manage deep links at runtime, add the **DeepLink.DeeplinkConfigurationOverview** snippet to a custom admin page, and make sure that all the users who operate the app can access this page. You need to add the **DeepLink.Admin** module role to their user roles.
 
@@ -96,6 +99,7 @@ On the **Advanced** tab, there are these settings:
 * **Process an argument as an Object** – This is deprecated.
 * **Process an argument as a String** – This is deprecated.
 * **Alternative Index Page** – If selected, the default index location (`index.html`) and the **DeepLink.IndexPage** constant will be overridden by this value. This is useful for theme-related use cases, for example, `index-dark.html`.
+* **Track hit count** - If selected, Deeplink will track the number of hits on this link in the `HitCount` attribute. This tracking can be disabled if performance issues occur. This option is only available in Deep Link module version 9 or higher.
 
 ### 3.5 Optional Configuration
 
@@ -124,7 +128,7 @@ To view all the available deep link configurations and example URLs, add the **D
     For the **LoginLocation** constant, it is IMPORTANT to note the following:
 
     * When the value is left empty, the default location is `login.html` (this file should be available in the theme folder).
-    * When the login location ends with `=` (for example, in the case of Mendix SSO: `https://login.mendix.com/oidp/login?ret=`), the original deep link location will be appended to the login location.
+    * When the login location ends with `=` (for example, in the case of Mendix SSO: `/openid/login?continuation=`), the original deep link location will be appended to the login location.
     * When using the module with a MindSphere app, use `/mindspherelogin.html?redirect_uri=` as a login location (MindSphere SSO V2.0 and above is required).
     * When using XSUAA, set the value to `/xsauaalogin/login?ret=`.
     * When using the [SAML](/appstore/modules/saml/) module, set the value to `/SSO/login?f=true&cont=` to redirect the user to the original deep link location after a successful login.

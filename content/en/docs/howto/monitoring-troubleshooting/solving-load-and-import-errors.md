@@ -38,7 +38,7 @@ Before trying to solve the problems, it is useful to discover the origin of the 
 
 ### 3.1 Is This a Team Server App?
 
-If your app is a [Team Server](/developerportal/collaborate/team-server/) app, and you just did a [download or update](/refguide/using-version-control-in-studio-pro/) from the server, the problem may have been added in a revision that was recently committed to the Team Server. You can check who made the most recent commit via the [Team Server](/developerportal/collaborate/team-server/) menu item in the [Developer Portal](https://sprintr.home.mendix.com).
+If your app is a [Team Server](/developerportal/general/team-server/) app, and you just did a [download or update](/refguide/using-version-control-in-studio-pro/) from the server, the problem may have been added in a revision that was recently committed to the Team Server. You can check who made the most recent commit via the [Team Server](/developerportal/general/team-server/) menu item in the [Developer Portal](https://sprintr.home.mendix.com).
 
 If the latest change on your branch line was committed by someone other than yourself, please inform the person about the problem.
 
@@ -59,7 +59,6 @@ The most likely cause for these kinds of errors is a faulty script that was run 
 ## 5 Read More
 
 * [Clearing Warning Messages in Mendix](/howto/monitoring-troubleshooting/clear-warning-messages/)
-* [Debug a Hybrid Mobile Application](/howto/monitoring-troubleshooting/debug-a-hybrid-mobile-application/)
 * [Debugging Java Actions](/howto/monitoring-troubleshooting/debug-java-actions/)
 * [Debugging Java actions remotely](/howto/monitoring-troubleshooting/debug-java-actions-remotely/)
 * [Debugging Microflows and Nanoflows](/refguide/debug-microflows-and-nanoflows/)

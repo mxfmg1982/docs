@@ -19,7 +19,19 @@ The [AWS Lambda](https://marketplace.mendix.com/link/component/204511) connector
 
 ### 1.2 Prerequisites {#prerequisites}
 
-The AWS Lambda connector requires the [AWS Authentication connector](https://marketplace.mendix.com/link/component/120333) to authenticate with Amazon Web Services (AWS). For more information about installing and configuring the AWS Authentication connector, see [AWS Authentication](/appstore/connectors/aws/aws-authentication/).
+The AWS Lambda connector requires Mendix Studio Pro version 9.18.0 or above.
+
+To authenticate with Amazon Web Service (AWS), you must also install and configure the [AWS authentication connector](https://marketplace.mendix.com/link/component/120333). For more information about installing and configuring the AWS Authentication connector, see [AWS Authentication](/appstore/connectors/aws/aws-authentication/).
+
+### 1.3 Licensing and Cost
+
+This connector is available as a free download from the Mendix Marketplace, but the AWS service to which is connects may incur a usage cost. For more information, refer to AWS documentation.
+
+{{% alert color="info" %}}
+Most AWS services provide a free tier that allows easy access to most services. To find out if this service is included in the free tier, see [AWS Free Tier](https://aws.amazon.com/free/). To calculate the potential cost of using an AWS service outside of the free tier, use the [AWS Cost calculator](https://calculator.aws/).
+{{% /alert %}}
+
+Depending on your use case, your deployment environment, and the type of app that you want to build, you may also need a license for your Mendix app. For more information, refer to [Licensing Apps](/developerportal/deploy/licensing-apps-outside-mxcloud/).
 
 ## 2 Installation
 
@@ -102,6 +114,7 @@ This activity lists all the Lambda functions which are available for the supplie
 #### 4.2.2 InvokeFunction
 
 This activity invokes a [Lambda function](https://docs.aws.amazon.com/lambda/latest/dg/lambda-functions.html).
+By default, this function invokes Lambda functions synchronously. To invoke an asynchronous Lambda function, make sure to update the `InvokeAsynchronous` attribute of the `InvokeFunctionRequest` entity to `true`.
 
 **Parameters**
 

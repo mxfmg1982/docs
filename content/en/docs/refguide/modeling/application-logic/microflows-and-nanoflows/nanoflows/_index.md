@@ -152,3 +152,11 @@ The nanoflow editor offers keyboard support for navigating and manipulating the 
 ## 6 Security {#security}
 
 Nanoflows are executed in the context of the current user. Any operation for which the user is unauthorized will fail. For instance, when objects are retrieved in a nanoflow, only the ones for which the current user has read access will be returned. Committing an object only succeeds when the current user has write access for all changes.
+
+## 7 Converting a Nanoflow to a Microflow {#convert-to-microflow}
+
+To convert a nanoflow to a microflow, you have two options. The first option is to right-click anywhere in the nanoflow editor and select **Convert to microflow**. Alternatively, in the **App Explorer**, right-click on the name of the nanoflow you want to convert, and select **Convert to microflow**.
+
+{{< figure src="/attachments/refguide/modeling/application-logic/microflows-and-nanoflows/nanoflows/convert-to-microflow.PNG" alt="Convert to microflow" width="550px" >}}
+
+A new microflow is created and added to the same directory, and you can get consistency errors if there are actions that are not supported by microflows.

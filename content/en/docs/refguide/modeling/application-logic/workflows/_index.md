@@ -8,7 +8,7 @@ tags: ["workflow", "workflows", "Studio Pro"]
 
 ## 1 Introduction
 
-Workflow is a visual language in Mendix Studio and Studio Pro that allows you to build extendable processes. It is fully integrated with other visual languages, such as the microflow editor and page editor. 
+Workflow is a visual language that allows you to build extendable processes. It is fully integrated with other visual languages, such as the microflow editor and page editor. 
 
 ## 2 Workflow Elements
 
@@ -22,7 +22,8 @@ You can perform the following basic functions when working on workflows:
 * Create a workflow
 * Delete a workflow
 * Add elements to a workflow
-* View element properties 
+* View element properties
+* Export a workflow to an image
 
 ### 3.1 Opening a Workflow
 
@@ -38,11 +39,12 @@ The selected workflow is opened.
 To add a workflow to your app, do the following:
 
 1. In the [App Explorer](/refguide/app-explorer/), right-click the module or a folder you want to create a page in and select **Add workflow**.
-2. In the **Add workflow** dialog box, fill in Name and click **OK**:
+2. In the **Add workflow** dialog box, fill in the **Name**.
+3. Optionally you can select an **Entity** to use it as a [workflow parameter](/refguide/workflow-parameters/):
 
-    {{< figure src="/attachments/refguide/modeling/application-logic/workflows/add-workflow-dialog.jpg" alt="Adding Workflow" >}}
+    {{< figure src="/attachments/refguide/modeling/application-logic/workflows/add-workflow-dialog.png" alt="Adding Workflow" >}}
 
-The workflow is created and the **WorkflowInstance** entity is added to the domain model. For more information on the **WorkflowInstance** entity, see [Workflow Parameters](/refguide/workflow-parameters/).
+The workflow is created.
 
 ### 3.3 Deleting a Workflow
 
@@ -122,7 +124,7 @@ You have configured the button to trigger the workflow.
 
 #### 3.7.2 Triggering a Workflow via a Microflow {#trigger-microflow}
 
-To trigger a workflow via a microflow, you can add a **Call workflow** activity to the microflow. For more information on this activity, see [Workflow Call](/refguide/workflow-call/).  
+To trigger a workflow via a microflow, you can add a **Call workflow** activity to the microflow. For more information on this activity, see [Call Workflow](/refguide/workflow-call/).  
 
 Do the following:
 
@@ -138,6 +140,19 @@ Do the following:
 7. Click **OK**.
 
 Now when you run this microflow, it will trigger the selected workflow. 
+
+### 3.8 Exporting a Workflow to an Image
+
+There are two ways to export a workflow to an image: 
+
+* Through the [File menu](/refguide/file-menu/) in the top bar: **File** > **Export as image**.
+* By clicking **Export as image** in the upper-left corner of the workflow editor.
+
+Both options open a **Save file** dialog-box allowing you to choose a name and location for the exported image. After clicking **Save** the **Export workflow model to image** dialog-box is opened, where you can change parameters for your image export such as a transparent or opaque background and a relative size of the exported image by selecting a zoom level:
+
+{{< figure src="/attachments/refguide/modeling/application-logic/workflows/export-workflow-to-image.png" alt="Export workflow to image prompt" width="600">}}
+
+The current document is exported as an image in the .png format.
 
 ## 4 Workflow Entities in the System Module {#workflow-entities}
 
@@ -185,7 +200,11 @@ The **Workflow Commons** module is a workflow specific module that has preconfig
 
 For more information on how to configure the **Workflow Commons** in an existing app, see [Adding a Workflow to an Existing App with Workflow Commons](/refguide/workflow-setting-up-app/).
 
-## 9 Read More
+## 9 Workflow Engine
+
+The Workflow Engine is the Runtime engine to execute workflows. For information on how the engine works, how you can interact with the engine, and what information it stores, see [Workflow Engine](/refguide/workflow-engine/).
+
+## 10 Read More
 
 * [Adding a Workflow to an Existing App with Workflow Commons](/refguide/workflow-setting-up-app/)
 * [Jumping to Different Activities in a Workflow](/refguide/jump-to/)

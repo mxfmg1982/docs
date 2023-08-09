@@ -259,9 +259,9 @@ Memory statistics should only be interpreted by experts, lack of detailed knowle
 
 {{% /alert %}}
 
-Represents the number of bytes allocated to the specified memory sections. For a general explanation, see the [Oracle documentation on tuning garbage collection](http://docs.oracle.com/javase/8/docs/technotes/guides/vm/gctuning/). For the heap and non-heap fields see the [memory usage](https://docs.oracle.com/javase/8/docs/api/java/lang/management/MemoryUsage.html) page.
+Represents the number of bytes allocated to the specified memory sections. For a general explanation, see the [Oracle documentation on tuning garbage collection](https://docs.oracle.com/en/java/javase/11/gctuning/introduction-garbage-collection-tuning.html). For the heap and non-heap fields see the [memory usage](https://docs.oracle.com/en/java/javase/11/docs/api/java.management/java/lang/management/MemoryUsage.html) page.
 
-The "memorypools" section contains an ordered list of all the memory pools exactly as we receive them from the JVM with some fields of the [MemoryPoolMxBean](http://docs.oracle.com/javase/8/docs/api/java/lang/management/MemoryPoolMXBean.html):
+The "memorypools" section contains an ordered list of all the memory pools exactly as we receive them from the JVM with some fields of the [MemoryPoolMxBean](https://docs.oracle.com/en/java/javase/11/docs/api/java.management/java/lang/management/MemoryPoolMXBean.html):
 
 * "usage" – returns an estimate of the memory usage of this memory pool (in bytes)
 * "is_heap" – is this memory pool part of the heap or not?
@@ -331,7 +331,8 @@ This information can be an aid in figuring out which objects cause a lot of memo
     "jetty":{
       "current_connections":0,
       "max_connections":0,
-      "max_idle_time_s":200
+      "max_idle_time_s":200,
+      "requests_active_max":0
     },
     "threadpool": {
       "idle_threads":3,
@@ -351,6 +352,8 @@ This information can be an aid in figuring out which objects cause a lot of memo
 ### 5.3 Return Values
 
 The server statistics monitor action gives information about the embedded Jetty web server. The "jetty" section lists the number of current open connections and the maximum number of open connections. In addition, it lists the maximum idle time of the connection before it is closed, if Jetty is running under normal circumstances.
+
+The `max_connections` value is deprecated and replaced by `requests_active_max` which returns the same value. If this value is zero, this indicates that statistics are not enabled on the Jetty server.
 
 The "threadpool" section gives information about the threadpool of the handler which processes all requests which go through the runtime port. See the [Jetty QueuedThreadPool documentation](https://www.eclipse.org/jetty/javadoc/jetty-10/org/eclipse/jetty/util/thread/QueuedThreadPool.html) for more information.
 

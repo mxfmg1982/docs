@@ -28,7 +28,7 @@ The app is created on the Team Server, and a working copy is created in the **Pr
 
 ## 3 Joining a Project
 
-If there is already a Team Server enabled project, you can be invited to join it (see [Team](/developerportal/collaborate/team/).
+If there is already a Team Server enabled project, you can be invited to join it (see [Team](/developerportal/general/team/).
 
 Once you are a team member, providing you have been given a role with sufficient rights, you can work on the app by doing the following:
 
@@ -100,7 +100,7 @@ In general, it is a good idea to commit after implementing one feature or fixing
 Committing results in a new revision in the repository. You can add the following information in the Desktop Modeler when you perform a commit, and this will be attached to the newly created revision:
 
 * A textual message. This should be a summary of the changes you made
-* A list of Developer Portal stories that relate to the commit. A small commit will probably relate to one story. The Modeler shows stories that are in the current sprint and do not have a status of *Done*. Adding the story to the commit will not change the state of the Developer Portal story. Setting the status to 'Done' must be done manually and depends on your *definition of done*.
+* A list of Developer Portal stories that relate to the commit. A small commit will probably relate to one story. The Modeler shows stories that are in the current Sprint and do not have a status of *Done*. Adding the story to the commit will not change the state of the Developer Portal story. Setting the status to 'Done' must be done manually and depends on your *definition of done*.
 
 {{< figure src="/attachments/refguide7/version-control/using-version-control-in-the-dm/2018-02-21_13-50-03.png" >}}
 

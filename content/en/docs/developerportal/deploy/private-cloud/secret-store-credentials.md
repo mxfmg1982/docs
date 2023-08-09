@@ -11,7 +11,7 @@ tags: ["Deploy", "Private Cloud", "Secrets", "Secret Stores", "Vault", "Kubernet
 You can increase the security of your environment by implementing an external secrets store to manage your Kubernetes secrets.
 Environments running Mendix for Private Cloud can be granted read-only access to a secrets store by using a [Kubernetes Secrets Store CSI Driver](https://secrets-store-csi-driver.sigs.k8s.io/). This document outlines the high-level process, and provides example implementations for HashiCorp Vault and AWS Secrets Manager.
 
-{{% alert color="info" %}}Secret storage does not currently support [database plans](/developerportal/deploy/private-cloud-cluster/#database-plan) or [storage plans](/developerportal/deploy/private-cloud-cluster/#storage-plan). You must provision your environment manually.{{% /alert %}}
+{{% alert color="info" %}}Secret storage does not currently support [database plans](/developerportal/deploy/private-cloud-storage-plans/#database) or [blob storage plans](/developerportal/deploy/private-cloud-storage-plans/#blob-storage). You must provision your environment manually.{{% /alert %}}
 
 {{% alert color="info" %}}Using an external secret storage provides multiple benefits, such as rotating credentials from a single location, collecting audit logs and dynamically generating role-specific credentials.
 
@@ -482,7 +482,7 @@ After completing the prerequisites, follow these steps to switch from password-b
    ALTER ROLE <database-username> WITH PASSWORD NULL;
    ```
 
-   {{% alert color="info" %}}This step is not necessary if the RDS instance was created with only IAM authentication enabled, and if `database-username` is the default (master) user.{{% /alert %}}
+   {{% alert color="info" %}}This step is not necessary if the RDS instance was created with only IAM authentication enabled, and if `database-username` is the default (primary) user.{{% /alert %}}
 3. Attach the following inline IAM policy to the environment's IAM role (created when [Configuring a Secret Store with AWS Secrets Manager](#configure-using-aws-secrets-manager)):
 
    ```json

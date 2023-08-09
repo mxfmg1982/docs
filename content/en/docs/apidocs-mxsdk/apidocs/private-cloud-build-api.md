@@ -3,7 +3,8 @@ title: "Mendix for Private Cloud Build API"
 url: /apidocs-mxsdk/apidocs/private-cloud-build-api/
 type: swagger
 category: "API Documentation"
-weight: 38
+description: "This API allows you to manage deployment packages which can later be used in the environments deployed in your private cloud."
+weight: 55
 ---
 
 ## 1 Introduction
@@ -26,20 +27,23 @@ To help you work with the Mendix for Private Cloud Build API, the following sect
 
 ### 2.1 Authentication
 
-Authentication for the API uses a Personal Access Token (PAT).
+Authentication for the API uses a personal access token (PAT).
 
 #### 2.1.1 Generating a PAT
 
-Go to https://warden.mendix.com/ and follow the instructions in [Create a Personal Access Token with Warden](/developerportal/community-tools/warden/). Select the following as scopes:
+You can generate a PAT in the **Developer Settings** section of your Mendix Profile. For details, see the [Personal Access Tokens](/developerportal/community-tools/mendix-profile/#pat) section of *Mendix Profile*.
 
-- `mx:privatecloud-build:read` – to perform `GET` operations
-- `mx:privatecloud-build:write` – to perform all operations (`GET`, `POST` and `DELETE`)
-- `mx:modelrepository:write` – under `Model Repository` - to perform build package operation 
+Select the following as scopes:
+
+* `mx:privatecloud-build:read` – to perform `GET` operations
+* `mx:privatecloud-build:write` – to perform all operations (`GET`, `POST` and `DELETE`)
+* `mx:modelrepository:write` – under `Model Repository` - to perform build package operation 
 
 Store the `{GENERATED_PAT}` in a safe location, so you can use it to authorize your Mendix for Private Cloud API calls.
 
-#### 2.1.2 Scopes explanation
-| Operation                   | Scopes                                                        |
+#### 2.1.2 Scopes Explanation
+
+| Operation                    | Scopes                                                        |
 |-----------------------------|---------------------------------------------------------------|
 | Build  deployment package   | `mx:privatecloud-build:write` and `mx:modelrepository:write`  |
 | Upload deployment package   | `mx:privatecloud-build:write`                                 |
@@ -78,11 +82,11 @@ The following steps will create a deployment package, retrieve it, refresh its `
 4. Make the API call `POST /apps/{appId}/packages/build` using the deployment package JSON request to initiate the build of a new deployment package.
 5. Verify that the job is successful using the process described in [Managing Asynchronous Jobs](#async-jobs). 
 6. Call `GET /apps/{appId}/packages` to retrieve all the packages in the application. 
-7. Once the job that you launched in step 4 is successful, you will see a `packageId` in the response from Step 6. You can then call `GET /apps/{appId}/packages/{packageId}` to get the deployment package details.
-    The same `packageId` can the be used in step 12 from the [DeployAPI](https://docs.mendix.com/apidocs-mxsdk/apidocs/private-cloud-deploy-api/#32-using-the-api-to-deploy-an-app) documentation.
+7. Once the job that you launched in step 4 is successful, you will see a `id` in the response from Step 6. You can then call `GET /apps/{appId}/packages/{id}` to get the deployment package details.
+    The same `id` can the be used in step 12 from the [DeployAPI](/apidocs-mxsdk/apidocs/private-cloud-deploy-api/#restart) documentation.
 8. Call `GET /apps/{appId}/packages` to retrieve all the deployment packages in the application. You should see the previously created deployment package in the list.
-9. If you want to download the deployment package locally, you can use the location URL present in the response from step 7. The URL has a lifetime of 15 minutes, so if more than 15 minutes have passed since the creation of the deployment package, you must request a new URL by calling `GET /apps/{appId}/packages/{packageId}?url=true`.
-10. Call `DELETE /apps/{appId}/packageId`, where you can get the package ID value from step 7.
+9. If you want to download the deployment package locally, you can use the location URL present in the response from step 7. The URL has a lifetime of 15 minutes, so if more than 15 minutes have passed since the creation of the deployment package, you must request a new URL by calling `GET /apps/{appId}/packages/{id}?url=true`.
+10. Call `DELETE /apps/{appId}/id`, where you can get the package ID value from step 7.
 11. Verify that the job is successful using the process described in [Managing Asynchronous Jobs](#async-jobs). 
 12. Call `GET /apps/{appId}/packages` to retrieve all the deployment packages in the application. The deployment package should be removed from the list.
 
@@ -98,8 +102,8 @@ Follow the steps below to upload a deployment package by using the API.
 2. Prepare the `multipart/form-data` request for your deployment package, as seen in the OpenAPI specification file. The `file` indicates the *.mda* file of the deployment package that you want to upload, and `fileName` represents the name with which the deployment package will be displayed in the Private Cloud Portal. If you do not provide the *.mda* extension to the *filename*, it is added automatically.
 3. Make the API call `POST /apps/{appId}/packages` using the request created in the previous step to upload the new deployment package.
 4. Verify that the job is successful using the process described in [Managing Asynchronous Jobs](#async-jobs).
-5. Once the previous job is successful, you will see a `packageId` in the response. You can then call `GET /apps/{appId}/packages/{packageId}` to get the deployment package details and verify the uploaded file.
-    You can use the same `packageId` when deploying an app through the [Mendix for Private Cloud Deploy API](/apidocs-mxsdk/apidocs/private-cloud-deploy-api/#api-deploy).
+5. Once the previous job is successful, you will see a `id` in the response. You can then call `GET /apps/{appId}/packages/{id}` to get the deployment package details and verify the uploaded file.
+    You can use the same `id` when deploying an app through the [Mendix for Private Cloud Deploy API](/apidocs-mxsdk/apidocs/private-cloud-deploy-api/#api-deploy).
 
 ## 4 API Reference
 
